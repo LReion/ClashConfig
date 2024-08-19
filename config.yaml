@@ -1,0 +1,199 @@
+proxies:
+
+
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+geodata-mode: true
+geox-url:
+  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://mirror.ghproxy.com/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+profile:
+  store-selection: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniffer-port: 
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+    skip-domain:
+      - "+.push.apple.com"
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.localdomain"
+  nameserver:
+    - https://119.29.29.29/dns-query
+    - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
+    - https://119.29.29.29/dns-query
+    - https://223.5.5.5/dns-query
+  nameserver-policy:
+    "geosite:cn,privte":
+      - https://119.29.29.29/dns-query
+      - https://223.5.5.5/dns-query
+    "geosite:geolocation-!cn":
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
+proxy-groups:
+
+  - name: 默认
+    type: select
+    proxies: [♻️ 自动选择,直连,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点]
+
+  - name: 📢 Google
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: 📲 电报消息
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: Twitter
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: 📺 哔哩哔哩
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: 📺 巴哈姆特
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: 📹 油管视频
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: 🎥 Netflix
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: Spotify
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: Github
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  - name: 🎯 全球直连
+    type: select
+    proxies: [直连,默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择]
+
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies: [默认,🇭🇰 香港,🇨🇳 台湾,🇯🇵 日本,🇸🇬 新加坡,🇺🇸 美国,其它地区,全部节点,♻️ 自动选择,🎯 全球直连]
+
+  #分隔,下面是地区分组
+  - name: 🇭🇰 香港
+    type: select
+    include-all: true
+    filter: "(?i)港|hk|hongkong|hong kong"
+    proxies: [直连]
+
+  - name: 🇨🇳 台湾
+    type: select
+    include-all: true
+    filter: "(?i)台|tw|taiwan"
+    proxies: [直连]
+
+  - name: 🇯🇵 日本
+    type: select
+    include-all: true
+    filter: "(?i)日|jp|japan"
+    proxies: [直连]
+
+  - name: 🇺🇸 美国
+    type: select
+    include-all: true
+    filter: "(?i)美|us|unitedstates|united states"
+    proxies: [直连]
+
+  - name: 🇸🇬 新加坡
+    type: select
+    include-all: true
+    filter: "(?i)(新|sg|singapore)"
+    proxies: [直连]
+
+  - name: 其它地区
+    type: select
+    include-all: true
+    filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
+
+  - name: 全部节点
+    type: select
+    include-all: true
+
+  - name: ♻️ 自动选择
+    type: url-test
+    include-all: true
+    tolerance: 10
+
+rules:
+  # 绕过本地局域网
+  - GEOIP,lan,🎯 全球直连,no-resolve
+  # 分流指定服务到指定代理组
+  - GEOSITE,github,Github
+  - GEOSITE,twitter,Twitter
+  - GEOSITE,youtube,📹 油管视频
+  - GEOSITE,google,📢 Google
+  - GEOSITE,telegram,📲 电报消息
+  - GEOSITE,netflix,🎥 Netflix
+  - GEOSITE,bilibili,📺 哔哩哔哩
+  - GEOSITE,bahamut,📺 巴哈姆特
+  - GEOSITE,spotify,Spotify
+  - GEOSITE,CN,🎯 全球直连
+  - GEOSITE,geolocation-!cn,🐟 漏网之鱼
+
+  - GEOIP,google,📢 Google
+  - GEOIP,netflix,🎥 Netflix
+  - GEOIP,telegram,📲 电报消息
+  - GEOIP,twitter,Twitter
+  - GEOIP,CN,🎯 全球直连
+
+  # Emby
+  - DOMAIN-SUFFIX,127255.best,DIRECT
+  - DOMAIN-SUFFIX,127066.xyz,DIRECT
+  - DOMAIN-SUFFIX,lilyya.xyz,DIRECT
+
+  # My Domain
+  - DOMAIN-SUFFIX,iftp.io,DIRECT
+  - DOMAIN-SUFFIX,kirino.io,DIRECT
+
+  - MATCH,🐟 漏网之鱼
